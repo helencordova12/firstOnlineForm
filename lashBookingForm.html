@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+	background-color: #CCE5FF;
+}
+
+label{
+	font-size: 115%;
+}
+
+form{
+	color: black;
+	font-size: 100%;
+	text-align: left;
+	padding-top: 35px;
+	padding-left: 200px;
+}
+
+header{
+	color: black;
+	font-family: 'Great Vibes', cursive;
+	font-size: 320%;
+	text-align: center;
+	padding: 20px;
+}
+
+/*Whenever the cursor hovers over the header the header will temporarily turn white and become bigger*/
+header:hover {
+	color: white;
+	font-size: 320%;
+	text-align: center;
+}
+
+h1{
+	float: right;
+    padding: 1px;
+}
+
+h2{
+	float: right;
+	display: inline-block;
+    white-space: nowrap;
+	padding-right: 50px;
+}
+
+.images{
+	float:right;
+    width: 50px;
+}
+
+.firstImage{
+	float:right;
+    width: 500px;
+	
+	padding-top: 35px;
+	padding-right: 50px;
+
+}
+
+.secondImage{
+	float:right;
+    width: 500px;
+	
+	padding-right: 50px;
+	padding-bottom:20px;
+
+}
+
+</style>
+
+<title> Schedule Now!</title>
+
+  <link rel = "icon" href = 
+"https://www.nicepng.com/png/full/6-67585_eyebrow-drawing-at-getdrawings-lash-drawing-transparent.png" 
+        type = "image/x-icon">
+
+<!-- Lines 18-20 are needed to use a google font in my html & css file --->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<header>Book Your Lash Extension App. With Us!</header>
+
+<body>
+
+<script>
+	
+	let displayOnce = false;
+	function message() {
+		
+		if(!displayOnce){ //this ensures that the message is only displayed once!
+			alert("All clients are expected to pay a $20 deposit the same week the appointment is made! If the deposit is not made within that time frame then the lash appointment will be canceled!");
+			displayOnce = true;
+		}
+		
+	}
+	
+	function checkInputs()
+	{
+		var firstName = document.getElementById("fName").value;
+		var lastName = document.getElementById("lName").value;
+		var phoneNum = document.getElementById("phoneNumber").value;
+		var date = document.getElementById("appDate").value;
+		var time = document.getElementById("appTime").value;
+		var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+		
+		if(firstName == "" || lastName == "") //if first and last name are not provided by client display a message
+			document.getElementById("lastMessage").innerHTML = 
+			"Please fill in all the blanks!";
+		else if(!phoneNum.match(regex)) //if phone number not valid display a message
+			document.getElementById("lastMessage").innerHTML = 
+			"Enter Valid Phone Number!";
+		else if (date == "") //if appointment date not selected display a message
+			document.getElementById("lastMessage").innerHTML = 
+			"Select Appointment Date!"
+		else if (time == "") //if appointment time not selected display a message
+			document.getElementById("lastMessage").innerHTML = 
+			"Select Appointment Time!"
+		else 
+			document.getElementById("lastMessage").innerHTML = 
+			"Your appointment with us has been made! See you soon " + firstName + "!";
+	}
+	
+</script>
+
+<div class = "images">
+  <img class = "firstImage" src = "https://cdn.shopify.com/s/files/1/0281/1317/4612/products/Asset1_d5d1d74f-bd82-46b8-a1e8-222d9ca5b954.png?v=1607703238"> 
+  
+  <h1> <br> </h1>
+
+  <img class = "secondImage" src ="https://i.pinimg.com/originals/ba/67/11/ba67119d39c62b46d93403a0ee392177.jpg"> 
+  <div>
+  <h2> Contact Info: julieBeauty@lashes.com</h2>
+  </div>
+</div>
+<form>
+	<label> First name: <br><br> </label>
+	<input type ="text" id = "fName" name = "firstname" size ="35"><br><br>
+	
+	<label>Last name: <br><br> </label>
+	<input type ="text" id = "lName" name = "lastname" size ="35"><br><br>
+
+	<label>Phone Number:<br><br> </label>
+	
+	<input type ="text" id = "phoneNumber" placeholder = "xxx-xxx-xxxx" name = "number"><br><br>
+	
+	<label>Desired Lash Extensions: <br><br> </label>
+	<select>
+	<option  = "classic" value = "Classic"> Classic </option>
+	<option value = "Hybrid"> Hybrid </option>
+	<option value = "Volume"> Volume </option>
+	<option value = "Mega Volume"> Mega Volume</option>
+	</select>
+	<br><br>
+	
+	<label>Payment Type: <br><br></label>
+	<select onclick = "message()" >
+	<option value = "Cash"> Cash </option>
+	<option value = "Venmo"> Venmo </option>
+	<option value = "Zelle"> Zelle </option>
+	<option value = "CashApp"> CashApp </option>
+	</select>
+	<br><br>
+	
+	<label>Select App. Date: <br><br> </label>
+	<input type = "date" id = "appDate" name = "appointment" ><br><br>
+	
+	<!-- The time input type will allow the user to select a time for their appointment. --->
+	<label>Time:  <br><br> </label>
+	<input type = "time" id = "appTime" name = "appt" ><br><br>
+	
+	<input type = "button"  value = "Make App." onclick = "checkInputs()">
+	<span id = "lastMessage"></span>
+</form>
+
+
+</body>
+</head>
+</html>
